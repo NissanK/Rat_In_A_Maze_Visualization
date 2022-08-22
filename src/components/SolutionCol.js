@@ -41,7 +41,7 @@ function SolutionCol(props) {
         } 
         else if(matrixValues[props.r].row[props.c].valid) setBgColor('lightgreen');
         else setBgColor('rgb(241, 120, 120)');
-    },[positionSolutionX,positionSolutionY])
+    },[positionSolutionX,positionSolutionY,matrixValues,props.c,validSolution,props.r])
     
     return (
         <div className='solutionCol' ref={elementRef} style={{backgroundColor: bgColor}}>
