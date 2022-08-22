@@ -1,17 +1,23 @@
 import React,{useState,useContext, useEffect,useRef} from 'react'
 
-import {MatrixValues,SolutionsContext,PositionSolutionContext, FindSolutionsContext} from './Main';
+import {MatrixValues,SolutionsContext,PositionSolutionContext} from './Main';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft,faArrowDown,faArrowRight,faArrowUp } from '@fortawesome/free-solid-svg-icons' // <-- import styles to be used
 
 
 function SolutionCol(props) {
-    const [matrixValues,setMatrixValues] = useContext(MatrixValues);
-    const [validSolution,setValidSolution,validSolutionCnt,setValidSolutionCnt] = useContext(SolutionsContext);
-    const [positionSolutionX,setPositionSolutionX,positionSolutionY,setPositionSolutionY] = useContext(PositionSolutionContext);
-    const [findSolutions,setFindSolutions] = useContext(FindSolutionsContext);
-    
+    const matrixValuesArray = useContext(MatrixValues);
+    const matrixValues = matrixValuesArray[0];
+
+    const solutionsArray = useContext(SolutionsContext);
+    const validSolution = solutionsArray[0];
+
+    const positionSolutionArray = useContext(PositionSolutionContext);
+    const positionSolutionX = positionSolutionArray[0];
+
+    const positionSolutionY = positionSolutionArray[2];
+
     const elementRef = useRef(null);
 
     const [bgColor,setBgColor] = useState('lightgreen');

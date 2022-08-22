@@ -3,9 +3,16 @@ import '../Stylesheets/styles.css';
 import {DimensionContext, GenerateContext, SolutionsContext} from './Main'
 
 function GridInput() {
-    const [rows,setRows,columns,setColumns] = useContext(DimensionContext);
-    const [generateMatrix,setGenerateMatrix] = useContext(GenerateContext);
-    const [validSolution,setValidSolution,validSolutionCnt,setValidSolutionCnt] = useContext(SolutionsContext);
+    const dimensionArray = useContext(DimensionContext);
+    const setRows = dimensionArray[1];
+    const setColumns = dimensionArray[3];
+
+    const generateArray = useContext(GenerateContext);
+    const setGenerateMatrix = generateArray[1];
+    
+    const solutionsArray = useContext(SolutionsContext);
+    const setValidSolution = solutionsArray[1];
+    const setValidSolutionCnt = solutionsArray[3];
 
     const rowInputRef = useRef(null);
     const colInputRef = useRef(null);

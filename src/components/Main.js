@@ -27,10 +27,6 @@ function Main() {
     if(generateMatrix){
       let newMatrix = [...matrixValues];
       newMatrix = [];
-      // if(generateMatrix){
-      //   setMatrixValues([]);
-      // };
-      // setGenerateMatrix(0);
       for(let i = 0;i<rows;i++){
         const r = [];
         for(let j = 0;j<columns;j++){

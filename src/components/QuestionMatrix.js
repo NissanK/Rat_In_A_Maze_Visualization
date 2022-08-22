@@ -1,14 +1,20 @@
 import React,{useContext} from 'react'
-import {DimensionContext, FindSolutionsContext, GenerateContext, InputDisplayContext} from './Main';
+import {DimensionContext, FindSolutionsContext, InputDisplayContext} from './Main';
 import '../Stylesheets/styles.css'
 import Row from './Row';
 
 function QuestionMatrix() {
 
-    const [rows,setRows,columns,setColumns] = useContext(DimensionContext);
-    const [findSolutions,setFindSolutions] = useContext(FindSolutionsContext);
-    const [generateMatrix,setGenerateMatrix] = useContext(GenerateContext);
-    const [inputDisplay,setInputDisplay] = useContext(InputDisplayContext)
+    const dimensionsArray = useContext(DimensionContext);
+    const rows = dimensionsArray[0];
+    const columns = dimensionsArray[2];
+
+    const solutionsArray = useContext(FindSolutionsContext);
+    const setFindSolutions = solutionsArray[1];
+
+    const inputDisplayArray = useContext(InputDisplayContext);
+    const setInputDisplay = inputDisplayArray[1];
+
 
     let matrix = [];
     for(let i = 0;i<rows;i++){

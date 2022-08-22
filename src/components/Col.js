@@ -3,7 +3,8 @@ import React,{useState,useContext, useEffect,useRef} from 'react'
 import { GenerateContext, MatrixValues} from './Main';
 
 function Col(props) {
-    const[generateMatrix,setGenerateMatrix] = useContext(GenerateContext);
+    const generateMatrixArray = useContext(GenerateContext);
+    const generateMatrix = generateMatrixArray[0];
     const [matrixValues,setMatrixValues] = useContext(MatrixValues);
     
     const elementRef = useRef(null);

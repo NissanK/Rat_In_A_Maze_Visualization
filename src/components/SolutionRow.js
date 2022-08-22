@@ -6,7 +6,9 @@ import { DimensionContext } from './Main';
 import '../Stylesheets/styles.css'
 
 function SolutionRow(props) {
-    const [rows,setRows,columns,setColumns] = useContext(DimensionContext);
+    const dimensionsArray = useContext(DimensionContext);
+    const rows = dimensionsArray[0];
+    const columns = dimensionsArray[2];
     const rowMatrix = [];
 
     for(let i = 0;i<columns;i++){

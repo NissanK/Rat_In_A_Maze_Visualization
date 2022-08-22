@@ -1,12 +1,18 @@
-import React,{useContext,useEffect,useState} from 'react'
+import React,{useContext} from 'react'
 import SolutionRow from './SolutionRow';
 import { DimensionContext, FindSolutionsContext, SolutionsContext} from './Main';
 
 function SolutionMatrix() {
 
-    const [rows,setRows,columns,setColumns] = useContext(DimensionContext);
-    const [findSolutions,setFindSolutions] = useContext(FindSolutionsContext);
-    const [validSolution,setValidSolution,validSolutionCnt,setValidSolutionCnt] = useContext(SolutionsContext);
+    const dimensionsArray = useContext(DimensionContext);
+    const rows = dimensionsArray[0];
+    const columns = dimensionsArray[2];
+
+    const findSolutionsArray = useContext(FindSolutionsContext);
+    const setFindSolutions = findSolutionsArray[1];
+
+    const solutionsArray = useContext(SolutionsContext);
+    const validSolutionCnt = solutionsArray[2];
 
     let matrix = [];
     for(let i = 0;i<rows;i++){
