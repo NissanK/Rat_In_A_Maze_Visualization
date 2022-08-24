@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import GridInput from './GridInput';
 import QuestionMatrix from './QuestionMatrix';
 import SolutionMatrix from './SolutionMatrix';
+import NoValidAnswer from './NoValidAnswer';
 
 export const DimensionContext = React.createContext();
 export const MatrixValues = React.createContext();
@@ -10,6 +11,7 @@ export const FindSolutionsContext = React.createContext();
 export const SolutionsContext = React.createContext();
 export const PositionSolutionContext = React.createContext();
 export const InputDisplayContext = React.createContext();
+export const NoAnswerContext = React.createContext();
 
 function Main() {
   const [rows, setRows] = useState(0);
@@ -22,6 +24,9 @@ function Main() {
   const [positionSolutionX,setPositionSolutionX] = useState([0]);
   const [positionSolutionY,setPositionSolutionY] = useState([0]);
   const [inputDisplay,setInputDisplay] = useState(1);
+  // const []
+
+  const [noAnswer,setNoAnswer] = useState(0);
 
   useEffect(() => {
     if(generateMatrix){
@@ -78,36 +83,42 @@ function Main() {
       }
   
       dfs(0,0,"",visited);
-      const newValid = ans[getRandomInt(0,ans.length-1)];
-  
-      setValidSolutionCnt(ans.length);
-      setValidSolution(newValid);
-  
-      let newPositionX = [...positionSolutionX];
-      let newPositionY = [...positionSolutionY];
-  
-      newPositionX = [0];
-      newPositionY = [0];
-  
-      if(newPositionX.length === 1 && newPositionY.length === 1){
-        let n = newValid.length;
-        let x = 0;
-        let y = 0;
-        for(let i = 0;i<n;i++){
-          if(newValid[i] === 'R') y = y + 1;
-          else if(newValid[i] === 'L') y = y-1;
-          else if(newValid[i] === 'U') x = x -1;
-          else x = x + 1;
-          newPositionX.push(x);
-          newPositionY.push(y);
+
+      if((Array.isArray(ans) && ans.length)){
+        // setNoAnswer(1);
+        const newValid = ans[getRandomInt(0,ans.length-1)];
+    
+        setValidSolutionCnt(ans.length);
+        setValidSolution(newValid);
+    
+        let newPositionX = [...positionSolutionX];
+        let newPositionY = [...positionSolutionY];
+    
+        newPositionX = [0];
+        newPositionY = [0];
+    
+        if(newPositionX.length === 1 && newPositionY.length === 1){
+          let n = newValid.length;
+          let x = 0;
+          let y = 0;
+          for(let i = 0;i<n;i++){
+            if(newValid[i] === 'R') y = y + 1;
+            else if(newValid[i] === 'L') y = y-1;
+            else if(newValid[i] === 'U') x = x -1;
+            else x = x + 1;
+            newPositionX.push(x);
+            newPositionY.push(y);
+          }
+          setPositionSolutionX(newPositionX);
+          setPositionSolutionY(newPositionY);
         }
-        setPositionSolutionX(newPositionX);
-        setPositionSolutionY(newPositionY);
+      }
+      else{
+        setNoAnswer(1);
       }
   
       // console.log(newPositionX,newPositionY);
     }
-
 
     if(findSolutions){
       setValidSolution("");
@@ -117,34 +128,35 @@ function Main() {
     setFindSolutions(0);
   },[findSolutions,columns,matrixValues,positionSolutionX,positionSolutionY,rows])
 
-
-
   return (
     <div>
       <GenerateContext.Provider value = {[generateMatrix,setGenerateMatrix]}>
         <DimensionContext.Provider value={[rows,setRows,columns,setColumns]}>
 
-          <SolutionsContext.Provider value={[validSolution,setValidSolution,validSolutionCnt,setValidSolutionCnt]}>
-            <GridInput></GridInput>
-          </SolutionsContext.Provider>
+          <NoAnswerContext.Provider value={[noAnswer,setNoAnswer]}>
+            <SolutionsContext.Provider value={[validSolution,setValidSolution,validSolutionCnt,setValidSolutionCnt]}>
+              <GridInput></GridInput>
+            </SolutionsContext.Provider>
 
-          <MatrixValues.Provider value = {[matrixValues,setMatrixValues]}>
+            <MatrixValues.Provider value = {[matrixValues,setMatrixValues]}>
 
-            <FindSolutionsContext.Provider value={[findSolutions,setFindSolutions]}>
+              <FindSolutionsContext.Provider value={[findSolutions,setFindSolutions]}>
 
-              <InputDisplayContext.Provider value={[inputDisplay,setInputDisplay]}>
-                {(rows && inputDisplay) && <QuestionMatrix></QuestionMatrix>}
-              </InputDisplayContext.Provider>
+                <InputDisplayContext.Provider value={[inputDisplay,setInputDisplay]}>
+                  {(rows && inputDisplay) && <QuestionMatrix></QuestionMatrix>}
+                </InputDisplayContext.Provider>
 
-              <SolutionsContext.Provider value={[validSolution,setValidSolution,validSolutionCnt,setValidSolutionCnt]}>
-                <PositionSolutionContext.Provider value = {[positionSolutionX,setPositionSolutionX,positionSolutionY,setPositionSolutionY]}>
-                  {validSolutionCnt && <SolutionMatrix></SolutionMatrix>}
-                </PositionSolutionContext.Provider>
-              </SolutionsContext.Provider>
+                <SolutionsContext.Provider value={[validSolution,setValidSolution,validSolutionCnt,setValidSolutionCnt]}>
+                  <PositionSolutionContext.Provider value = {[positionSolutionX,setPositionSolutionX,positionSolutionY,setPositionSolutionY]}>
+                    {validSolutionCnt && <SolutionMatrix ></SolutionMatrix>}
+                  </PositionSolutionContext.Provider>
+                </SolutionsContext.Provider>
 
-            </FindSolutionsContext.Provider>
-
-          </MatrixValues.Provider>
+                  {validSolutionCnt === 0 && noAnswer===1 && <NoValidAnswer></NoValidAnswer>}
+                  
+              </FindSolutionsContext.Provider>
+            </MatrixValues.Provider>
+          </NoAnswerContext.Provider>
 
         </DimensionContext.Provider>
       </GenerateContext.Provider>

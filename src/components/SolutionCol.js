@@ -5,7 +5,6 @@ import {MatrixValues,SolutionsContext,PositionSolutionContext} from './Main';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft,faArrowDown,faArrowRight,faArrowUp } from '@fortawesome/free-solid-svg-icons' // <-- import styles to be used
 
-
 function SolutionCol(props) {
     const matrixValuesArray = useContext(MatrixValues);
     const matrixValues = matrixValuesArray[0];

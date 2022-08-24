@@ -1,6 +1,6 @@
 import React,{useEffect,useRef, useContext} from 'react'
 import '../Stylesheets/styles.css';
-import {DimensionContext, GenerateContext, SolutionsContext} from './Main'
+import {DimensionContext, GenerateContext, NoAnswerContext, SolutionsContext} from './Main'
 
 function GridInput() {
     const dimensionArray = useContext(DimensionContext);
@@ -13,6 +13,8 @@ function GridInput() {
     const solutionsArray = useContext(SolutionsContext);
     const setValidSolution = solutionsArray[1];
     const setValidSolutionCnt = solutionsArray[3];
+
+    const setNoAnswer = useContext(NoAnswerContext)[1];
 
     const rowInputRef = useRef(null);
     const colInputRef = useRef(null);
@@ -33,6 +35,7 @@ function GridInput() {
         setGenerateMatrix(1);
         setValidSolution('');
         setValidSolutionCnt(0);
+        setNoAnswer(0);
     }
 
   return (

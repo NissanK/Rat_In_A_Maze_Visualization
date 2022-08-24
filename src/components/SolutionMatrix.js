@@ -38,19 +38,21 @@ function SolutionMatrix() {
 
   return (
     <div className='flexContainer'>
-        <div className='flexSpaceAround'>
-            <div className='matrixContainer'>
-                <div className='matrix' style={dimenstionStyling}>
-                    {matrix}
+        {
+            <div className='flexSpaceAround'>
+                <div className='matrixContainer'>
+                    <div className='matrix' style={dimenstionStyling}>
+                        {matrix}
+                    </div>
+                </div>
+                <div className='flexContainer flexDirectionCol'>
+                    <button className='submit' onClick={() => setFindSolutions(1)}>Find Another Solution</button>
+                    <div className='generalText'>
+                        There are {validSolutionCnt} number of Unique Solutions!
+                    </div>
                 </div>
             </div>
-            <div className='flexContainer flexDirectionCol'>
-                <button className='submit' onClick={() => setFindSolutions(1)}>Find Another Solution</button>
-                <div className='validSolutionCnt'>
-                    There are {validSolutionCnt} number of Unique Solutions!
-                </div>
-            </div>
-        </div>
+        }
     </div>
   )
 }

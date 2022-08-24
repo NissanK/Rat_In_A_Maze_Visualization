@@ -158,9 +158,17 @@ label{
     flex-direction: column;
 }
 
-.validSolutionCnt{
+.generalText{
     color: #14FFEC;
     padding: 3rem;
-    font-size: large;
+    font-size: 1.5rem;
     font-weight: 450;
+}
+
+#newMatrixButton{
+    width: 15rem;
+}
+
+#newMatrixButton:hover{
+    width: 16rem;
 }
