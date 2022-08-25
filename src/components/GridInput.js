@@ -40,16 +40,18 @@ function GridInput() {
 
   return (
     <div>
-        <div className='flexContainer'>
-            <div className='inputContainer'>
-                <label className='inputs'>Rows</label>
-                <input ref={rowInputRef} type='number'></input>
+        <div className='flexContainer flexSpaceAround'>
+            <div className='RowCol flexSpaceAround'>
+                <div className='inputContainer'>
+                    <label className='inputs'>Rows</label>
+                    <input ref={rowInputRef} type='number'></input>
+                </div>
+                <div className='inputContainer'>
+                    <label className='inputs'>Columns</label>
+                    <input ref={colInputRef} type='number'></input>
+                </div>
             </div>
-            <div className='inputContainer'>
-                <label className='inputs'>Columns</label>
-                <input ref={colInputRef} type='number'></input>
-            </div>
-            <div className='inputContainer'>
+            <div className='generateMatrixContainer'>
                 <button className='submit' onClick={setDimensions}>Generate Matrix</button>
             </div>
         </div>

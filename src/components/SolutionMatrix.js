@@ -20,14 +20,15 @@ function SolutionMatrix() {
     }
     
     function height(){
-        if(rows > 10 || columns > 10) return rows * 2.5;
-        else if(rows> 6 || columns > 6) return rows * 3;
+        let width = window.innerWidth;
+        if(width < 750 && width>=600) return rows*4;
+        else if(width < 600) return rows*3;
         return rows * 5;
     }
-
     function width(){
-        if(rows > 10 || columns > 10) return columns * 2.5;
-        else if(rows> 6 || columns > 6) return columns * 3;
+        let width = window.innerWidth;
+        if(width < 750 && width>=600) return columns*4;
+        else if(width < 600) return columns*3;
         return columns * 5;
     }
 
@@ -39,14 +40,14 @@ function SolutionMatrix() {
   return (
     <div className='flexContainer'>
         {
-            <div className='flexSpaceAround'>
-                <div className='matrixContainer'>
-                    <div className='matrix' style={dimenstionStyling}>
-                        {matrix}
+            <div className='flexSpaceAround flexGrow'>
+                    <div className='matrixContainer'>
+                        <div className='matrix' style={dimenstionStyling}>
+                            {matrix}
+                        </div>
                     </div>
-                </div>
                 <div className='flexContainer flexDirectionCol'>
-                    <button className='submit' onClick={() => setFindSolutions(1)}>Find Another Solution</button>
+                    <button className='submit marginTop' onClick={() => setFindSolutions(1)}>Find Another Solution</button>
                     <div className='generalText'>
                         There are {validSolutionCnt} number of Unique Solutions!
                     </div>
