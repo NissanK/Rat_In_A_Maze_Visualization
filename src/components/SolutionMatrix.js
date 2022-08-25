@@ -49,7 +49,7 @@ function SolutionMatrix() {
                 <div className='flexContainer flexDirectionCol'>
                     <button className='submit marginTop' onClick={() => setFindSolutions(1)}>Find Another Solution</button>
                     <div className='generalText'>
-                        There are {validSolutionCnt} number of Unique Solutions!
+                        There are {validSolutionCnt} Unique Solutions!
                     </div>
                 </div>
             </div>
