@@ -3,6 +3,9 @@ import GridInput from './GridInput';
 import QuestionMatrix from './QuestionMatrix';
 import SolutionMatrix from './SolutionMatrix';
 import NoValidAnswer from './NoValidAnswer';
+import Info from './Info';
+import Backdrop from './Backdrop';
+import InfoBtn from './InfoBtn';
 
 export const DimensionContext = React.createContext();
 export const MatrixValues = React.createContext();
@@ -12,6 +15,7 @@ export const SolutionsContext = React.createContext();
 export const PositionSolutionContext = React.createContext();
 export const InputDisplayContext = React.createContext();
 export const NoAnswerContext = React.createContext();
+export const InfoContext = React.createContext();
 
 function Main() {
   const [rows, setRows] = useState(0);
@@ -24,7 +28,7 @@ function Main() {
   const [positionSolutionX,setPositionSolutionX] = useState([0]);
   const [positionSolutionY,setPositionSolutionY] = useState([0]);
   const [inputDisplay,setInputDisplay] = useState(1);
-  // const []
+  const [infoDisplay,setInfoDisplay] = useState(0);
 
   const [noAnswer,setNoAnswer] = useState(0);
 
@@ -130,6 +134,12 @@ function Main() {
 
   return (
     <div>
+      <InfoContext.Provider value={[infoDisplay,setInfoDisplay]}>
+        {infoDisplay ? <Info></Info> : null}
+        {infoDisplay ? <Backdrop></Backdrop> : null}
+        <InfoBtn></InfoBtn>
+      </InfoContext.Provider>
+
       <GenerateContext.Provider value = {[generateMatrix,setGenerateMatrix]}>
         <DimensionContext.Provider value={[rows,setRows,columns,setColumns]}>
 
@@ -143,16 +153,16 @@ function Main() {
               <FindSolutionsContext.Provider value={[findSolutions,setFindSolutions]}>
 
                 <InputDisplayContext.Provider value={[inputDisplay,setInputDisplay]}>
-                  {(rows && inputDisplay) && <QuestionMatrix></QuestionMatrix>}
+                  {(rows && inputDisplay)? <QuestionMatrix></QuestionMatrix> : null}
                 </InputDisplayContext.Provider>
 
                 <SolutionsContext.Provider value={[validSolution,setValidSolution,validSolutionCnt,setValidSolutionCnt]}>
                   <PositionSolutionContext.Provider value = {[positionSolutionX,setPositionSolutionX,positionSolutionY,setPositionSolutionY]}>
-                    {validSolutionCnt && <SolutionMatrix ></SolutionMatrix>}
+                    {validSolutionCnt ? <SolutionMatrix ></SolutionMatrix> : null}
                   </PositionSolutionContext.Provider>
                 </SolutionsContext.Provider>
 
-                  {validSolutionCnt === 0 && noAnswer===1 && <NoValidAnswer></NoValidAnswer>}
+                  {(validSolutionCnt === 0 && noAnswer===1) && <NoValidAnswer></NoValidAnswer>}
                   
               </FindSolutionsContext.Provider>
             </MatrixValues.Provider>
