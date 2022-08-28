@@ -203,8 +203,8 @@ label{
     border: 4px solid #323232;
     font-size: 1.2rem;
     z-index: 2;
-    color: #B1E1FF;
-    background-color: #A66CFF;
+    color: #323232;
+    background-color: #0D7377;
 }
 
 a,.inherit{
@@ -213,10 +213,10 @@ a,.inherit{
     margin: 0.6rem 0 0.6rem;
 }
 a{
-    color: #323232;
+    color: #35c7bb;
 }
 a:hover{
-    color: #212121;
+    color: #13f3e0;
 }
 .creditText{
     margin-top: 4rem;
@@ -248,7 +248,7 @@ a:hover{
     width: 2rem;
     height: 2rem;
     position: fixed;
-    background-color:#A66CFF;
+    background-color:#0D7377;
     border-radius: 50%;
     border: 2px solid #323232;
     transition: all 0.3s;
