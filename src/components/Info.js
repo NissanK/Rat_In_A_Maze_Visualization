@@ -17,6 +17,9 @@ function Info() {
         tiles to turn them <span className="inherit" style={{color : "rgb(243, 67, 67)"}}>Red</span> (blocked cell) and vice versa.
       </div>
       <div className="inherit">
+        S represents the Starting Cell and E represents the End Cell.
+      </div>
+      <div className="inherit">
         The Code will generate a random solution from all possible solutions.
       </div>
       <div className="inherit creditText flexContainer">
