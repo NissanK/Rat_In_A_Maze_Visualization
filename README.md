@@ -6,4 +6,4 @@ Here, I have visualized the various solution of the Rat in A Maze Problem
 Currently the site is hosted on netlify
 https://funny-malabi-8c3e4e.netlify.app/
 
-The site isn't complete yet. Thanks for checking out!
+Thanks for checking out!
