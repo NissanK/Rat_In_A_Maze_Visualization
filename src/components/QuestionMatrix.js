@@ -39,13 +39,18 @@ function QuestionMatrix() {
     }
   return (
     <div className='flexContainer'>
-        <div className='flexSpaceAround flexGrow'>
+        <div className='flexSpaceAround '>
             <div className='matrixContainer'>
                 <div className='matrix' style={dimenstionStyling}>
                     {matrix}
                 </div>
             </div>
-            <button className='submit marginTop' onClick={() => {setFindSolutions(1);setInputDisplay(0)}}>Find Solutions</button>
+            <div className='flexContainer flexDirectionCol width45'>
+                <div className='generalText'>
+                    Click on the <span className='inherit' style={{color : "lightgreen"}}>Green</span> Squares to toggle them <span className='inherit' style={{color : "rgb(241, 120, 120)"}}>Red</span> and vice-versa
+                </div>
+                <button className='submit marginTop' onClick={() => {setFindSolutions(1);setInputDisplay(0)}}>Find Solutions</button>
+            </div>
         </div>
     </div>
   )

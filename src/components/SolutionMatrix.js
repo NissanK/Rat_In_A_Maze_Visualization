@@ -25,6 +25,7 @@ function SolutionMatrix() {
         else if(width < 600) return rows*3;
         return rows * 5;
     }
+    
     function width(){
         let width = window.innerWidth;
         if(width < 750 && width>=600) return columns*4;

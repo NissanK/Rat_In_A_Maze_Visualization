@@ -1,8 +1,10 @@
-import React,{useEffect,useRef, useContext} from 'react'
+import React,{useState,useEffect,useRef, useContext} from 'react'
 import '../Stylesheets/styles.css';
 import {DimensionContext, GenerateContext, NoAnswerContext, SolutionsContext} from './Main'
 
 function GridInput() {
+    const [displayText, setDisplayText] = useState(1);
+
     const dimensionArray = useContext(DimensionContext);
     const setRows = dimensionArray[1];
     const setColumns = dimensionArray[3];
@@ -36,6 +38,7 @@ function GridInput() {
         setValidSolution('');
         setValidSolutionCnt(0);
         setNoAnswer(0);
+        setDisplayText(0);
     }
 
   return (
@@ -55,6 +58,9 @@ function GridInput() {
                 <button className='submit' onClick={setDimensions}>Generate Matrix</button>
             </div>
         </div>
+        {displayText && <div className='flexContainer generalText'>
+            Enter the rows and columns of the Matrix!
+        </div>}
     </div>
   )
 }

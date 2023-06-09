@@ -49,9 +49,9 @@ function Main() {
     setInputDisplay(1);
   }, [generateMatrix,columns,matrixValues,rows])
   
+  let ans = [];
   useEffect(()=>{
     
-    let ans = [];
     function getRandomInt(min, max) {
       min = Math.ceil(min);
       max = Math.floor(max);
@@ -74,23 +74,9 @@ function Main() {
       dfs(x,y+1,current_path + 'R',visited);
       visited[x][y] = 0;
     }
-  
-    function findRatInAMaze(){
-      let visited = [];
-  
-      for(let i = 0;i<rows;i++){
-        let visitedRow = [];
-        for(let j= 0;j<columns;j++){
-          visitedRow.push(0);
-        }
-        visited.push(visitedRow);
-      }
-  
-      dfs(0,0,"",visited);
 
-      if((Array.isArray(ans) && ans.length)){
-        // setNoAnswer(1);
-        const newValid = ans[getRandomInt(0,ans.length-1)];
+    function calculateNew(){
+      const newValid = ans[getRandomInt(0,ans.length-1)];
     
         setValidSolutionCnt(ans.length);
         setValidSolution(newValid);
@@ -116,12 +102,30 @@ function Main() {
           setPositionSolutionX(newPositionX);
           setPositionSolutionY(newPositionY);
         }
+    }
+  
+    function findRatInAMaze(){
+      if((Array.isArray(ans) && ans.length)){
+        calculateNew();
       }
       else{
-        setNoAnswer(1);
-      }
+        let visited = [];
   
-      // console.log(newPositionX,newPositionY);
+        for(let i = 0;i<rows;i++){
+          let visitedRow = [];
+          for(let j= 0;j<columns;j++){
+            visitedRow.push(0);
+          }
+          visited.push(visitedRow);
+        }
+        dfs(0,0,"",visited);
+        if((Array.isArray(ans) && ans.length)){
+          calculateNew();
+        }
+        else{
+          setNoAnswer(1);
+        }
+      }
     }
 
     if(findSolutions){

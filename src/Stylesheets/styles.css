@@ -64,6 +64,13 @@ input:focus {
     outline: none;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  pointer-events: none; /* Disable pointer events on the spin buttons */
+}
+
 label{
     margin: 0.5rem;
     color: #14FFEC;
@@ -277,6 +284,10 @@ a:hover{
     z-index: 1;
 }
 
+.width45{
+    width: 45%;
+}
+
 /* media queries */
 
 @media screen and (max-width : 900px){
@@ -298,6 +309,9 @@ a:hover{
     }
     .modal{
         width: 60%;
+    }
+    .width45{
+        width: auto;
     }
 }
 
